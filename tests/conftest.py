@@ -1,11 +1,12 @@
-""""
-Test cases for the main.py functionality.
-This module tests the calculate function with various inputs and edge cases.
-"""
-import pytest
+"""This module defines fixtures and test data for pytest."""
+import sys
+import os
 from decimal import Decimal
 from faker import Faker
 from calculator.operations import add, subtract, multiply, divide
+
+# Add the project root directory to the Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 fake = Faker()
 
@@ -25,7 +26,7 @@ def generate_test_data(num_records):
         operation_func = operation_mappings[operation_name]
 
         # Handle division by zero
-        if operation_name == 'divide':  # Compare operation name instead of function
+        if operation_name == 'divide':
             b = Decimal('1') if b == Decimal('0') else b
 
         try:
@@ -37,12 +38,22 @@ def generate_test_data(num_records):
 
 def pytest_addoption(parser):
     """Add command-line option for number of test records."""
-    parser.addoption("--num_records", action="store", default=5, type=int, help="Number of test records to generate")
+    parser.addoption(
+        "--num_records",
+        action="store",
+        default=5,
+        type=int,
+        help="Number of test records to generate"
+    )
 
 def pytest_generate_tests(metafunc):
     """Generate tests dynamically based on command-line options."""
     if {"a", "b", "expected"}.intersection(set(metafunc.fixturenames)):
         num_records = metafunc.config.getoption("num_records")
         parameters = list(generate_test_data(num_records))
-        modified_parameters = [(a, b, op_name if 'operation_name' in metafunc.fixturenames else op_func, expected) for a, b, op_name, op_func, expected in parameters]
+        modified_parameters = [
+            (a, b, op_name if 'operation_name' in metafunc.fixturenames else op_func, expected)
+            for a, b, op_name, op_func, expected in parameters
+        ]
         metafunc.parametrize("a,b,operation,expected", modified_parameters)
+        

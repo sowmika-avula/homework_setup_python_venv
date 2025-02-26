@@ -1,3 +1,4 @@
+"""This module defines arithmetic operations for the calculator."""
 from decimal import Decimal
 
 def add(a: Decimal, b: Decimal) -> Decimal:

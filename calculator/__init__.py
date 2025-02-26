@@ -35,3 +35,4 @@ class Calculator:
         """Perform division."""
         return Calculator._perform_operation(a, b, divide)
     
+    
