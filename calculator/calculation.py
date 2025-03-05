@@ -1,11 +1,8 @@
-"""This module defines the Calculation class for representing a single calculation."""
 from decimal import Decimal
 from typing import Callable
 
 class Calculation:
-    """Represents a single calculation with two operands and an operation."""
     def __init__(self, a: Decimal, b: Decimal, operation: Callable[[Decimal, Decimal], Decimal]):
-        """Initialize a Calculation instance."""
         self.a = a
         self.b = b
         self.operation = operation
@@ -16,10 +13,9 @@ class Calculation:
         return Calculation(a, b, operation)
 
     def perform(self) -> Decimal:
-        """Perform the calculation and return the result."""
+        if self.operation.__name__ == 'divide' and self.b == Decimal('0'):
+            raise ValueError("Cannot divide by zero")
         return self.operation(self.a, self.b)
 
-    def __repr__(self):
-        """Return a string representation of the calculation."""
+    def __repr__(self) -> str:
         return f"Calculation({self.a}, {self.b}, {self.operation.__name__})"
-    
