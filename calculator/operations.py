@@ -1,4 +1,4 @@
-"""This module defines arithmetic operations for the calculator."""
+# calculator/operations.py
 from decimal import Decimal
 
 def add(a: Decimal, b: Decimal) -> Decimal:
@@ -15,6 +15,8 @@ def multiply(a: Decimal, b: Decimal) -> Decimal:
 
 def divide(a: Decimal, b: Decimal) -> Decimal:
     """Return the quotient of two Decimal numbers. Raises ValueError if b is zero."""
+    if not isinstance(a, (int, float, Decimal)) or not isinstance(b, (int, float, Decimal)):
+        raise TypeError("Operands must be numeric values.")
     if b == 0:
         raise ValueError("Cannot divide by zero")
     return a / b

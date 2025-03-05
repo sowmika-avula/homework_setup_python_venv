@@ -1,12 +1,8 @@
 # tests/test_operations.py
-"""
-Test cases for the main.py functionality.
-This module tests the calculate function with various inputs and edge cases.
-"""
-from decimal import Decimal
 import pytest
+from decimal import Decimal
 from calculator.calculation import Calculation
-from calculator.operations import divide
+from calculator.operations import add, subtract, multiply, divide
 
 def test_operation(a, b, operation, expected):
     """Test arithmetic operations."""
@@ -18,4 +14,8 @@ def test_divide_by_zero():
     with pytest.raises(ValueError, match="Cannot divide by zero"):
         calculation = Calculation(Decimal('10'), Decimal('0'), divide)
         calculation.perform()
-        
+
+def test_valid_division():
+    """Test a valid division operation to ensure full coverage."""
+    calculation = Calculation(Decimal('10'), Decimal('2'), divide)
+    assert calculation.perform() == Decimal('5')

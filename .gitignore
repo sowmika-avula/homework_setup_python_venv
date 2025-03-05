@@ -1,87 +1,48 @@
-# .gitignore
+# Ignore Python compiled files
+*.pyc
+*.pyo
+*.pyd
+_pycache_/
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Virtual environment folder
+# Ignore virtual environment directories
 venv/
+.venv/
+env/
+.env/
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
+# Ignore coverage and testing files
 .coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Pytest
+htmlcov/
 .pytest_cache/
 
-# Django stuff:
+# Ignore build and distribution files
+build/
+dist/
+*.egg-info/
+
+# Ignore local configuration files
+*.env
+*.local
+
+# Ignore macOS-specific files
+.DS_Store
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore log files
 *.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+logs/
 
-# Flask stuff:
-instance/
-.webassets-cache
+# Ignore temporary files
+*.tmp
+*.temp
 
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# Pyre type checker
-.pyre/
-
-# VSCode project files
-# .vscode/
-
-# IDE files
-*.idea/
-*.sublime-project
-*.sublime-workspace
+# Ignore mypy files
+mypy.ini

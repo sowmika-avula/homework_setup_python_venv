@@ -1,10 +1,16 @@
-# tests/conftest.py
-import pytest
 from decimal import Decimal
 from faker import Faker
 from calculator.operations import add, subtract, multiply, divide
+from commands.base_command import BaseCommand
 
 fake = Faker()
+
+class DummyCommand(BaseCommand):
+    def name(self):
+        return "dummy"
+
+    def execute(self, *args):
+        print("Dummy executed with args:", args)
 
 def generate_test_data(num_records):
     """Generate test data for calculations."""
@@ -31,14 +37,3 @@ def generate_test_data(num_records):
             expected = "ZeroDivisionError"
 
         yield a, b, operation_name, operation_func, expected
-
-def pytest_addoption(parser):
-    """Add command-line option for number of test records."""
-    parser.addoption("--num_records", action="store", default=5, type=int, help="Number of test records to generate")
-
-def pytest_generate_tests(metafunc):
-    if {"a", "b", "expected"}.issubset(set(metafunc.fixturenames)):
-        num_records = metafunc.config.getoption("num_records")
-        parameters = list(generate_test_data(num_records))
-        modified_parameters = [(a, b, op_name if 'operation_name' in metafunc.fixturenames else op_func, expected) for a, b, op_name, op_func, expected in parameters]
-        metafunc.parametrize("a,b,operation,expected", modified_parameters)
