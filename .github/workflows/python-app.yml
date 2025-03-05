@@ -1,6 +1,13 @@
 name: Python CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+      - environment  # ✅ Include the correct branch names you are working on
+  pull_request:
+    branches:
+      - master
 
 jobs:
   test:
@@ -18,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-cov python-dotenv  # ✅ Ensure pytest-cov & python-dotenv are installed
+          pip install pytest pytest-cov python-dotenv
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run tests with coverage
