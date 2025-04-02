@@ -1,48 +1,35 @@
-# Ignore Python compiled files
-*.pyc
-*.pyo
-*.pyd
-_pycache_/
-
-# Ignore virtual environment directories
-venv/
-.venv/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
 env/
-.env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Ignore IDE-specific files
-.vscode/
+# Virtual Environment
+venv/
+ENV/
+
+# IDE files
 .idea/
+.vscode/
 *.swp
 *.swo
 
-# Ignore coverage and testing files
-.coverage
-htmlcov/
-.pytest_cache/
-
-# Ignore build and distribution files
-build/
-dist/
-*.egg-info/
-
-# Ignore local configuration files
-*.env
-*.local
-
-# Ignore macOS-specific files
+# OS specific files
 .DS_Store
-
-# Ignore Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# Ignore log files
-*.log
-logs/
-
-# Ignore temporary files
-*.tmp
-*.temp
-
-# Ignore mypy files
-mypy.ini
+Thumbs.db
